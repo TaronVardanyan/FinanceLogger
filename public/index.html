@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TypeScript Tutorial</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
+</head>
+<body>
+
+  <div class="wrapper">
+    <h1>Finance Logger</h1>
+
+    <!-- output list -->
+    <ul class="item-list">
+      
+    </ul>
+  </div>
+
+  <footer>
+    <form class="new-item-form">
+      <div class="field">
+        <label>Type:</label>
+        <select id="type">
+          <option value="invoice">Invoice</option>
+          <option value="payment">Payment</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>To / From:</label>
+        <input type="text" id="tofrom">
+      </div>   
+      <div class="field">
+        <label>Details:</label>
+        <input type="text" id="details">
+      </div>
+      <div class="field">
+        <label>Amount (£):</label>
+        <input type="number" id="amount">
+      </div>
+      <button>Add</button>
+    </form>
+  </footer>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script type="module">
+    // Your web app's Firebase configuration
+    let firebaseConfig = {
+      apiKey: "AIzaSyBS5w_vEcq7Q6O2Ld0Mmv2Zqb-BYK3xJ8k",
+      authDomain: "finance-logger-4dba1.firebaseapp.com",
+      projectId: "finance-logger-4dba1",
+      storageBucket: "finance-logger-4dba1.appspot.com",
+      messagingSenderId: "172208254397",
+      appId: "1:172208254397:web:ebca6fc0f04ce9924436d4"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    db.settings({timestampsInSnapshots: true});
+
+    db.collection("finances").get().then(snapshot => {
+     snapshot.docs.forEach(docs => {
+       window.localStorage.setItem('data', JSON.stringify(docs.data()));
+     });
+    })
+  </script>
+  <script type="module" src='scripts/app.js'></script>
+</body>
+</html>

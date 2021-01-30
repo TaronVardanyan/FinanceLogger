@@ -1,0 +1,16 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "Symple finance logger",
+  "main": "public/sandbox.js",
+  "dependencies": {
+    "typescript": "^4.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc -w"
+  },
+  "author": "Taron Vardanyan",
+  "license": "ISC"
+}
